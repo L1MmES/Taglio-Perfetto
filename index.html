@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Taglio Perfetto — Parrucchiere premium a Bergamo. Tagli uomo, donna e bambini con maestria italiana. Preventivo gratuito via WhatsApp.">
+<title>Taglio Perfetto | Parrucchiere Bergamo</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================
+   TOKENS
+   ============================================ */
+:root{
+  --black:#0F0F0F;
+  --dark:#1A1A1A;
+  --dark-2:#212121;
+  --gold:#D4AF37;
+  --gold-light:#E8CD8A;
+  --cream:#F5F0E8;
+  --text:#EDEDED;
+  --text-dim:#A7A29A;
+  --line:rgba(255,255,255,0.09);
+  --gold-line:rgba(212,175,55,0.35);
+  --header-h:82px;
+  --ease:cubic-bezier(.4,0,.2,1);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;scroll-padding-top:var(--header-h);}
+
+body{
+  font-family:'Inter',system-ui,sans-serif;
+  background-color:var(--black);
+  color:var(--text);
+  line-height:1.6;
+  overflow-x:hidden;
+  font-weight:300;
+}
+
+h1,h2,h3{font-family:'Playfair Display',serif;font-weight:700;line-height:1.1;color:#fff;}
+
+a{color:inherit;}
+img{max-width:100%;display:block;}
+button{font-family:inherit;}
+
+.container{max-width:1160px;margin:0 auto;padding:0 5%;}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  color:var(--gold);font-size:.78rem;letter-spacing:3px;font-weight:600;
+  text-transform:uppercase;margin-bottom:18px;
+}
+.eyebrow::before{content:'';width:28px;height:1px;background:var(--gold);}
+
+.section-head{text-align:center;max-width:640px;margin:0 auto 70px;}
+.section-head h2{font-size:clamp(2.2rem,4.5vw,3.1rem);margin-bottom:16px;}
+.section-head p{color:var(--text-dim);font-size:1.05rem;}
+
+.rule{
+  display:block;width:64px;height:2px;background:var(--gold);
+  margin:20px auto 0;
+}
+
+/* focus visibility */
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{
+  outline:2px solid var(--gold);outline-offset:3px;border-radius:3px;
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;scroll-behavior:auto !important;}
+}
+
+/* ============================================
+   REVEAL ON SCROLL
+   ============================================ */
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .8s var(--ease),transform .8s var(--ease);}
+.reveal.is-visible{opacity:1;transform:translateY(0);}
+.reveal-stagger.is-visible > *{transition-delay:calc(var(--i,0) * 90ms);}
+
+/* ============================================
+   HEADER
+   ============================================ */
+.header{
+  position:fixed;top:0;left:0;width:100%;z-index:1000;
+  height:var(--header-h);
+  padding:0 5%;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(15,15,15,.7);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid transparent;
+  transition:background .4s var(--ease),border-color .4s var(--ease),height .4s var(--ease);
+}
+.header.scrolled{
+  background:rgba(15,15,15,.96);
+  border-bottom:1px solid var(--line);
+  height:66px;
+}
+
+.logo{
+  font-family:'Playfair Display',serif;
+  font-size:1.4rem;letter-spacing:2px;
+  color:#fff;text-decoration:none;font-weight:700;
+  display:flex;flex-direction:column;line-height:1;
+}
+.logo span{
+  font-family:'Inter',sans-serif;font-weight:500;font-size:.58rem;
+  letter-spacing:3px;color:var(--gold);margin-top:5px;text-transform:uppercase;
+}
+
+.nav{display:flex;align-items:center;gap:38px;list-style:none;}
+.nav a{
+  color:var(--text);text-decoration:none;font-weight:500;font-size:.92rem;
+  position:relative;padding:6px 0;
+}
+.nav a::after{
+  content:'';position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--gold);
+  transition:width .35s var(--ease);
+}
+.nav a:hover::after,.nav a:focus-visible::after{width:100%;}
+.nav a:hover{color:var(--gold-light);}
+
+.header-actions{display:flex;align-items:center;gap:22px;}
+.header-call{
+  display:flex;align-items:center;gap:8px;
+  color:var(--text);text-decoration:none;font-size:.88rem;font-weight:500;
+  border:1px solid var(--line);padding:9px 18px;border-radius:30px;
+  transition:border-color .3s,color .3s;
+  white-space:nowrap;
+}
+.header-call:hover{border-color:var(--gold);color:var(--gold-light);}
+
+.burger{
+  display:none;background:none;border:none;cursor:pointer;
+  width:38px;height:32px;position:relative;z-index:1001;
+}
+.burger span{
+  position:absolute;left:0;width:100%;height:1.5px;background:var(--gold);
+  transition:transform .35s var(--ease),opacity .3s var(--ease),top .35s var(--ease);
+}
+.burger span:nth-child(1){top:6px;}
+.burger span:nth-child(2){top:15px;}
+.burger span:nth-child(3){top:24px;}
+.burger.open span:nth-child(1){top:15px;transform:rotate(45deg);}
+.burger.open span:nth-child(2){opacity:0;}
+.burger.open span:nth-child(3){top:15px;transform:rotate(-45deg);}
+
+.mobile-nav{
+  position:fixed;inset:0;background:rgba(10,10,10,.98);
+  backdrop-filter:blur(10px);
+  z-index:999;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:34px;
+  opacity:0;pointer-events:none;transform:translateY(-16px);
+  transition:opacity .4s var(--ease),transform .4s var(--ease);
+}
+.mobile-nav.open{opacity:1;pointer-events:auto;transform:translateY(0);}
+.mobile-nav a{
+  font-family:'Playfair Display',serif;font-size:1.9rem;color:#fff;text-decoration:none;
+}
+.mobile-nav a:hover{color:var(--gold);}
+.mobile-nav .header-call{margin-top:10px;}
+
+/* ============================================
+   HERO
+   ============================================ */
+.hero{
+  min-height:100vh;
+  position:relative;display:flex;align-items:center;justify-content:center;
+  overflow:hidden;background:var(--black);
+  padding:calc(var(--header-h) + 40px) 5% 100px;
+}
+
+.hero-backdrop{position:absolute;inset:0;z-index:0;}
+.hero-backdrop::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 12%, rgba(212,175,55,.14), transparent 60%),
+    radial-gradient(ellipse 80% 60% at 85% 90%, rgba(212,175,55,.06), transparent 60%),
+    linear-gradient(180deg, #0b0b0b 0%, #121212 45%, #0b0b0b 100%);
+}
+.hero-backdrop::after{
+  content:'';position:absolute;inset:0;opacity:.35;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+/* Optional real photo: uncomment and set an image, it will sit under the gradient wash above.
+.hero-backdrop{ background-image:url('img/hero-photo.jpg'); background-size:cover; background-position:center; }
+*/
+
+.hero-lines{position:absolute;inset:0;z-index:0;opacity:.5;pointer-events:none;}
+.hero-lines span{
+  position:absolute;top:0;bottom:0;width:1px;background:linear-gradient(180deg,transparent,var(--line),transparent);
+}
+.hero-lines span:nth-child(1){left:15%;} .hero-lines span:nth-child(2){left:50%;} .hero-lines span:nth-child(3){left:85%;}
+
+.hero-seal{
+  position:absolute;top:112px;right:6%;width:132px;height:132px;z-index:2;
+  animation:spin 26s linear infinite;
+}
+.hero-seal .mark{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;color:var(--gold);font-size:1.6rem;
+  animation:spin-back 26s linear infinite;
+}
+@keyframes spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+@keyframes spin-back{from{transform:rotate(0deg);}to{transform:rotate(-360deg);}}
+@media (max-width:900px){.hero-seal{display:none;}}
+
+.hero-content{
+  position:relative;z-index:3;text-align:center;max-width:900px;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:10px;
+  background:rgba(212,175,55,.1);color:var(--gold-light);
+  padding:9px 26px;border-radius:50px;font-size:.82rem;font-weight:600;
+  letter-spacing:2.5px;margin-bottom:28px;border:1px solid var(--gold-line);
+  text-transform:uppercase;
+}
+.hero h1{
+  font-size:clamp(3rem,8vw,6.4rem);color:#fff;margin-bottom:20px;
+  text-shadow:0 4px 40px rgba(0,0,0,.6);
+  letter-spacing:.5px;
+}
+.hero h1 em{color:var(--gold);font-style:normal;}
+.hero .subtitle{
+  font-size:1.2rem;color:var(--text-dim);margin-bottom:44px;
+  max-width:540px;margin-left:auto;margin-right:auto;font-weight:300;
+}
+.hero-ctas{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;}
+
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:17px 40px;font-size:1rem;font-weight:600;border-radius:4px;
+  text-decoration:none;border:1px solid transparent;cursor:pointer;
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease),background .3s var(--ease),color .3s var(--ease);
+}
+.btn-gold{
+  background:var(--gold);color:#0F0F0F;
+  box-shadow:0 10px 30px rgba(212,175,55,.22);
+}
+.btn-gold:hover{transform:translateY(-3px);box-shadow:0 18px 38px rgba(212,175,55,.32);background:var(--gold-light);}
+.btn-outline{
+  background:transparent;color:var(--text);border-color:var(--line);
+}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold-light);transform:translateY(-3px);}
+
+.scroll-cue{
+  position:absolute;bottom:34px;left:50%;transform:translateX(-50%);z-index:3;
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  color:var(--text-dim);font-size:.7rem;letter-spacing:2px;text-transform:uppercase;
+}
+.scroll-cue .stick{width:1px;height:38px;background:linear-gradient(180deg,var(--gold),transparent);position:relative;overflow:hidden;}
+.scroll-cue .stick::after{content:'';position:absolute;left:0;top:-38px;width:100%;height:38px;background:var(--gold-light);animation:cue 2.2s ease-in-out infinite;}
+@keyframes cue{0%{top:-38px;}60%,100%{top:38px;}}
+
+/* ============================================
+   BANNER LOGO
+   ============================================ */
+.banner-section{padding:90px 5%;background:var(--black);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+.banner-frame{
+  max-width:920px;margin:0 auto;position:relative;
+  padding:34px;border:1px solid var(--gold-line);border-radius:6px;
+  background:linear-gradient(180deg, rgba(212,175,55,.04), transparent);
+}
+.banner-frame::before,.banner-frame::after{
+  content:'';position:absolute;width:22px;height:22px;border:1px solid var(--gold);
+  opacity:.7;
+}
+.banner-frame::before{top:-1px;left:-1px;border-right:none;border-bottom:none;}
+.banner-frame::after{bottom:-1px;right:-1px;border-left:none;border-top:none;}
+.banner-frame img{width:100%;height:auto;}
+.banner-fallback{
+  display:none;
+  text-align:center;padding:40px 10px;
+  font-family:'Playfair Display',serif;font-size:clamp(2rem,6vw,3.6rem);
+  letter-spacing:4px;color:#fff;
+}
+.banner-fallback span{display:block;font-family:'Inter',sans-serif;font-size:.8rem;letter-spacing:5px;color:var(--gold);margin-top:10px;font-weight:600;}
+
+/* ============================================
+   RAZOR DIVIDER (signature element)
+   ============================================ */
+.razor-divider{width:100%;padding:0 5%;background:var(--black);}
+.razor-divider svg{width:100%;max-width:1160px;margin:0 auto;display:block;height:26px;}
+.razor-divider path{
+  stroke:var(--gold);stroke-width:1;fill:none;
+  stroke-dasharray:1400;stroke-dashoffset:1400;
+  transition:stroke-dashoffset 1.6s var(--ease);
+}
+.razor-divider circle{fill:var(--gold);opacity:0;transition:opacity .5s var(--ease) .9s;}
+.razor-divider.is-visible path{stroke-dashoffset:0;}
+.razor-divider.is-visible circle{opacity:1;}
+
+/* ============================================
+   SERVIZI
+   ============================================ */
+.servizi{padding:130px 5% 110px;background:var(--dark);}
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;max-width:1080px;margin:0 auto;}
+.price-card{
+  background:var(--dark-2);border:1px solid var(--line);border-radius:8px;
+  padding:38px 32px;transition:transform .4s var(--ease),border-color .4s var(--ease),box-shadow .4s var(--ease);
+}
+.price-card:hover{transform:translateY(-6px);border-color:var(--gold-line);box-shadow:0 20px 40px rgba(0,0,0,.35);}
+.price-card h3{
+  color:var(--gold);font-size:1.5rem;margin-bottom:6px;
+}
+.price-card .card-sub{color:var(--text-dim);font-size:.85rem;margin-bottom:28px;}
+.price-row{
+  display:flex;justify-content:space-between;align-items:baseline;
+  padding:15px 0;border-bottom:1px dashed var(--line);
+}
+.price-row:last-of-type{border-bottom:none;}
+.price-row .name{font-size:1rem;color:var(--text);}
+.price-row .note{display:block;font-size:.76rem;color:var(--text-dim);margin-top:2px;}
+.price-row .amount{color:var(--gold-light);font-weight:600;font-family:'Playfair Display',serif;font-size:1.15rem;white-space:nowrap;}
+
+.servizi-cta{text-align:center;margin-top:56px;}
+.servizi-note{color:var(--text-dim);font-size:.85rem;margin-top:16px;}
+
+@media (max-width:900px){.price-grid{grid-template-columns:1fr;max-width:460px;}}
+
+/* ============================================
+   TEAM
+   ============================================ */
+.team{padding:130px 5%;background:var(--black);}
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:34px;max-width:1080px;margin:0 auto;}
+.team-card{text-align:center;}
+.avatar{
+  width:150px;height:150px;border-radius:50%;margin:0 auto 22px;
+  display:flex;align-items:center;justify-content:center;
+  background:radial-gradient(circle at 35% 30%, #2a2a2a, #161616 70%);
+  border:1px solid var(--gold-line);
+  font-family:'Playfair Display',serif;font-size:2.4rem;color:var(--gold);
+  position:relative;transition:transform .4s var(--ease),box-shadow .4s var(--ease);
+}
+.team-card:hover .avatar{transform:translateY(-5px) scale(1.03);box-shadow:0 14px 30px rgba(212,175,55,.15);}
+.avatar::after{
+  content:'';position:absolute;inset:-6px;border-radius:50%;border:1px solid var(--line);
+}
+.team-card h3{font-size:1.35rem;margin-bottom:4px;}
+.team-role{color:var(--gold);font-size:.82rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;}
+.team-desc{color:var(--text-dim);font-size:.92rem;max-width:260px;margin:0 auto;}
+
+@media (max-width:900px){.team-grid{grid-template-columns:1fr;max-width:340px;gap:50px;}}
+
+/* ============================================
+   GALLERIA
+   ============================================ */
+.galleria{padding:130px 5%;background:var(--dark);}
+.gallery-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:150px;gap:14px;
+  max-width:1120px;margin:0 auto;
+}
+.gallery-item{
+  position:relative;border-radius:6px;overflow:hidden;cursor:pointer;
+  display:flex;align-items:flex-end;
+  border:1px solid var(--line);
+}
+.gallery-item.tall{grid-row:span 2;}
+.gallery-item .tile-bg{
+  position:absolute;inset:0;
+  background:linear-gradient(150deg, var(--tile-a,#262626), var(--tile-b,#141414));
+  transition:transform .6s var(--ease);
+}
+.gallery-item:hover .tile-bg{transform:scale(1.08);}
+.gallery-item .tile-icon{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-size:1.8rem;opacity:.35;
+}
+.gallery-item .tile-label{
+  position:relative;z-index:2;padding:16px;font-size:.82rem;letter-spacing:1px;
+  color:#fff;background:linear-gradient(0deg, rgba(0,0,0,.65), transparent);
+  width:100%;font-weight:500;
+}
+.gallery-note{text-align:center;color:var(--text-dim);font-size:.85rem;margin-top:26px;}
+
+@media (max-width:900px){
+  .gallery-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:140px;}
+}
+
+/* ============================================
+   PREVENTIVO
+   ============================================ */
+.preventivo{padding:130px 5% 140px;background:var(--black);}
+.preventivo-wrap{max-width:820px;margin:0 auto;}
+.preventivo .section-head{margin-bottom:54px;}
+
+.form-card{
+  background:var(--dark-2);padding:48px;border-radius:10px;border:1px solid var(--line);
+  position:relative;
+}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.field{margin-top:22px;}
+.form-grid .field{margin-top:0;}
+.field label{
+  display:block;margin-bottom:9px;color:var(--gold-light);font-size:.82rem;
+  letter-spacing:1px;text-transform:uppercase;font-weight:600;
+}
+.field .required{color:var(--gold);}
+.field input,.field select,.field textarea{
+  width:100%;padding:15px 16px;background:#111;border:1px solid var(--line);
+  color:#fff;border-radius:6px;font-size:1rem;font-family:inherit;
+  transition:border-color .3s,box-shadow .3s;
+}
+.field input::placeholder,.field textarea::placeholder{color:#5c5c5c;}
+.field input:focus,.field select:focus,.field textarea:focus{
+  border-color:var(--gold);box-shadow:0 0 0 3px rgba(212,175,55,.12);outline:none;
+}
+.field textarea{resize:vertical;min-height:110px;}
+.field-error{
+  display:none;color:#e08a8a;font-size:.78rem;margin-top:7px;
+}
+.field.invalid input,.field.invalid select{border-color:#c46a6a;}
+.field.invalid .field-error{display:block;}
+
+.price-result{
+  margin-top:28px;padding:22px;background:rgba(212,175,55,.07);border-radius:8px;
+  text-align:center;border:1px solid var(--gold-line);
+  display:none;opacity:0;transform:translateY(-8px);
+  transition:opacity .4s var(--ease),transform .4s var(--ease);
+}
+.price-result.show{display:block;}
+.price-result.visible{opacity:1;transform:translateY(0);}
+.price-result .label{color:var(--text-dim);font-size:.85rem;margin-bottom:6px;}
+.price-result .amount{font-size:2rem;font-weight:700;color:var(--gold);font-family:'Playfair Display',serif;}
+
+.submit-btn{
+  margin-top:36px;width:100%;padding:19px;background:var(--gold);color:#0F0F0F;
+  font-weight:700;font-size:1.05rem;border:none;border-radius:6px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  transition:background .3s,transform .3s,box-shadow .3s;
+}
+.submit-btn:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 14px 30px rgba(212,175,55,.25);}
+.submit-btn:active{transform:translateY(0);}
+.form-privacy{text-align:center;color:var(--text-dim);font-size:.78rem;margin-top:18px;}
+
+.success-panel{
+  display:none;text-align:center;padding:20px 10px 6px;
+}
+.success-panel.show{display:block;}
+.success-check{
+  width:64px;height:64px;border-radius:50%;border:2px solid var(--gold);
+  margin:0 auto 20px;display:flex;align-items:center;justify-content:center;
+  animation:pop .5s var(--ease);
+}
+@keyframes pop{from{transform:scale(.6);opacity:0;}to{transform:scale(1);opacity:1;}}
+.success-panel h3{margin-bottom:10px;}
+.success-panel p{color:var(--text-dim);margin-bottom:26px;}
+
+/* ============================================
+   CONTATTI
+   ============================================ */
+.contatti{padding:130px 5%;background:var(--dark);}
+.contatti-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:60px;max-width:1080px;margin:0 auto;
+  align-items:stretch;
+}
+.contatti-info h2{font-size:2.4rem;margin-bottom:16px;}
+.contatti-info > p{color:var(--text-dim);margin-bottom:36px;max-width:400px;}
+.info-row{
+  display:flex;gap:16px;align-items:flex-start;padding:18px 0;border-top:1px solid var(--line);
+}
+.info-row:last-of-type{border-bottom:1px solid var(--line);}
+.info-icon{
+  width:38px;height:38px;border-radius:50%;border:1px solid var(--gold-line);
+  display:flex;align-items:center;justify-content:center;color:var(--gold);
+  flex-shrink:0;font-size:1rem;
+}
+.info-row h4{font-size:.98rem;margin-bottom:4px;color:#fff;font-family:'Inter',sans-serif;font-weight:600;}
+.info-row p,.info-row a{color:var(--text-dim);font-size:.92rem;text-decoration:none;}
+.info-row a:hover{color:var(--gold-light);}
+.social-row{display:flex;gap:14px;margin-top:30px;}
+.social-btn{
+  width:44px;height:44px;border-radius:50%;border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;text-decoration:none;color:var(--text);
+  transition:border-color .3s,color .3s,transform .3s;
+}
+.social-btn:hover{border-color:var(--gold);color:var(--gold-light);transform:translateY(-3px);}
+
+.map-wrap{
+  border-radius:10px;overflow:hidden;border:1px solid var(--line);min-height:340px;
+  filter:grayscale(.5) contrast(1.1) brightness(.85);
+  transition:filter .4s var(--ease);
+}
+.map-wrap:hover{filter:grayscale(0) brightness(1);}
+.map-wrap iframe{width:100%;height:100%;min-height:340px;border:0;display:block;}
+
+@media (max-width:900px){.contatti-grid{grid-template-columns:1fr;}}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.footer{
+  padding:54px 5% 40px;background:var(--black);border-top:1px solid var(--line);
+  text-align:center;
+}
+.footer .logo{justify-content:center;align-items:center;margin-bottom:18px;display:inline-flex;}
+.footer-links{display:flex;justify-content:center;gap:30px;margin:22px 0;flex-wrap:wrap;list-style:none;}
+.footer-links a{color:var(--text-dim);text-decoration:none;font-size:.88rem;}
+.footer-links a:hover{color:var(--gold-light);}
+.footer-credit{color:#5c5c5c;font-size:.78rem;margin-top:20px;}
+
+/* ============================================
+   FLOATING ACTIONS
+   ============================================ */
+.floating-actions{
+  position:fixed;right:24px;bottom:24px;z-index:900;
+  display:flex;flex-direction:column;gap:12px;align-items:flex-end;
+}
+.fab{
+  width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  text-decoration:none;color:#0F0F0F;background:var(--gold);
+  box-shadow:0 10px 26px rgba(0,0,0,.4);
+  transition:transform .35s var(--ease),opacity .35s var(--ease),box-shadow .35s var(--ease);
+  font-size:1.4rem;
+}
+.fab:hover{transform:translateY(-3px) scale(1.05);box-shadow:0 14px 32px rgba(212,175,55,.3);}
+.fab-top{
+  background:var(--dark-2);color:var(--gold);border:1px solid var(--gold-line);
+  opacity:0;pointer-events:none;transform:translateY(10px);
+}
+.fab-top.show{opacity:1;pointer-events:auto;transform:translateY(0);}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width:900px){
+  .nav,.header-call{display:none;}
+  .burger{display:block;}
+}
+@media (max-width:640px){
+  .form-grid{grid-template-columns:1fr;}
+  .form-card{padding:30px 22px;}
+  .price-card{padding:30px 22px;}
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================ HEADER ============================================ -->
+<header class="header" id="siteHeader">
+  <a href="#" class="logo">TAGLIO PERFETTO<span>Bergamo · Dal 2018</span></a>
+
+  <nav>
+    <ul class="nav">
+      <li><a href="#servizi">Servizi</a></li>
+      <!--
+      <li><a href="#team">Maestri</a></li>
+      -->
+      
+      <li><a href="#galleria">Galleria</a></li>
+      <li><a href="#preventivo">Preventivo</a></li>
+      <li><a href="#contatti">Contatti</a></li>
+    </ul>
+  </nav>
+
+  <div class="header-actions">
+    <a href="tel:+393920522626" class="header-call">☎ +39 392 052 2626</a>
+    <button class="burger" id="burger" aria-label="Apri menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<nav class="mobile-nav" id="mobileNav">
+  <a href="#servizi">Servizi</a>
+  <!----
+  <a href="#team">Maestri</a>
+  ---->
+  <a href="#galleria">Galleria</a>
+  <a href="#preventivo">Preventivo</a>
+  <a href="#contatti">Contatti</a>
+  <a href="tel:+393920522626" class="header-call">☎ +39 392 052 2626</a>
+</nav>
+
+<!-- ============================================ HERO ============================================ -->
+<section class="hero">
+  <div class="hero-backdrop"></div>
+  <div class="hero-lines" aria-hidden="true"><span></span><span></span><span></span></div>
+
+  <svg class="hero-seal" viewBox="0 0 200 200" aria-hidden="true">
+    <defs>
+      <path id="sealCircle" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0"/>
+    </defs>
+    <circle cx="100" cy="100" r="94" fill="none" stroke="#D4AF37" stroke-width="1" opacity=".5"/>
+    <circle cx="100" cy="100" r="60" fill="none" stroke="#D4AF37" stroke-width="1" opacity=".5"/>
+    <text font-size="12" fill="#D4AF37" letter-spacing="3">
+      <textPath href="#sealCircle" startOffset="0%">TAGLIO PERFETTO • BARBIERE ARTIGIANALE • BERGAMO •</textPath>
+    </text>
+    <text class="mark-text" font-size="0"></text>
+  </svg>
+
+  <div class="hero-content">
+    <div class="hero-badge">Uomo · Donna · Bambini</div>
+    <h1>L'arte del <em>Taglio</em><br>Perfetto</h1>
+    <p class="subtitle">Barbieri e stylist a Bergamo, dove la precisione italiana incontra lo stile contemporaneo. Dal 2018.</p>
+    <div class="hero-ctas">
+      <a href="#preventivo" class="btn btn-gold">Richiedi il Preventivo</a>
+      <a href="https://wa.me/393920522626" target="_blank" rel="noopener" class="btn btn-outline">Scrivici su WhatsApp</a>
+    </div>
+  </div>
+
+  <div class="scroll-cue" aria-hidden="true">Scorri<div class="stick"></div></div>
+</section>
+
+<!-- ============================================ BANNER / LOGO ============================================ -->
+<section class="banner-section reveal">
+  <div class="banner-frame">
+    <img src="img/taglio-perfetto-logo.png"
+         alt="Taglio Perfetto — Parrucchiere Bergamo"
+         width="2173" height="724" loading="lazy"
+         onerror="this.style.display='none'; this.parentElement.querySelector('.banner-fallback').style.display='block';">
+    <div class="banner-fallback">
+      TAGLIO PERFETTO
+      <span>PARRUCCHIERE · BERGAMO</span>
+    </div>
+  </div>
+</section>
+<!--
+<div class="razor-divider" data-divider>
+  <svg viewBox="0 0 1160 26" preserveAspectRatio="none">
+    <path d="M0,13 L520,13" />
+    <circle cx="530" cy="13" r="4"/>
+    <path d="M542,13 L1160,13" />
+  </svg>
+</div>
+-->
+
+<!-- ============================================ SERVIZI / LISTINO ============================================ -->
+<section id="servizi" class="servizi">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow" style="justify-content:center;">Listino prezzi</div>
+      <h2>Trasparenza in ogni taglio</h2>
+      <p>Prezzi chiari, nessuna sorpresa. Ogni servizio include consulenza, lavaggio e styling finale.</p>
+    </div>
+
+    <div class="price-grid">
+      <div class="price-card reveal">
+        <h3>Uomo</h3>
+        <p class="card-sub">Taglio classico e moderno</p>
+        <div class="price-row">
+          <span class="name">Taglio capelli<span class="note">Forbice e macchinetta</span></span>
+          <span class="amount">€18</span>
+        </div>
+        <div class="price-row">
+          <span class="name">Taglio + Barba<span class="note">Rasatura a rasoio</span></span>
+          <span class="amount">€25</span>
+        </div>
+        <div class="price-row">
+          <span class="name">Solo barba<span class="note">Contorno e definizione</span></span>
+          <span class="amount">€13</span>
+        </div>
+      </div>
+
+      <div class="price-card reveal">
+        <h3>Donna</h3>
+        <p class="card-sub">Taglio, piega e colore</p>
+        <div class="price-row">
+          <span class="name">Taglio + Piega<span class="note">Consulenza inclusa</span></span>
+          <span class="amount">€35</span>
+        </div>
+        <div class="price-row">
+          <span class="name">Colore / Balayage<span class="note">In base a lunghezza</span></span>
+          <span class="amount">da €45</span>
+        </div>
+        <div class="price-row">
+          <span class="name">Solo piega<span class="note">Styling completo</span></span>
+          <span class="amount">€22</span>
+        </div>
+      </div>
+
+      <div class="price-card reveal">
+        <h3>Bambini</h3>
+        <p class="card-sub">Fino a 12 anni</p>
+        <div class="price-row">
+          <span class="name">Taglio bambino<span class="note">Ambiente su misura</span></span>
+          <span class="amount">€15</span>
+        </div>
+        <div class="price-row">
+          <span class="name">Primo taglio<span class="note">Ricordo incluso</span></span>
+          <span class="amount">€15</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="servizi-cta reveal">
+      <a href="#preventivo" class="btn btn-gold">Richiedi Preventivo Personalizzato</a>     
+    </div>
+  </div>
+</section>
+
+<div class="razor-divider" data-divider>
+  <svg viewBox="0 0 1160 26" preserveAspectRatio="none">
+    <path d="M0,13 L520,13" />
+    <circle cx="530" cy="13" r="4"/>
+    <path d="M542,13 L1160,13" />
+  </svg>
+</div>
+
+<!-- ============================================ TEAM ============================================ -->
+<!--<section id="team" class="team">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow" style="justify-content:center;">I maestri</div>
+      <h2>Chi lavorerà sui tuoi capelli</h2>
+      <p>Un team di stylist formati, con anni di esperienza tra Bergamo e Milano.</p>
+    </div>
+
+    <div class="team-grid">
+      <div class="team-card reveal">
+        <div class="avatar">M</div>
+        <h3>Marco Belli</h3>
+        <div class="team-role">Fondatore · Master Barber</div>
+        <p class="team-desc">Specialista in tagli uomo e rasatura classica a rasoio. Nel mestiere da oltre 12 anni.</p>
+      </div>
+      <div class="team-card reveal">
+        <div class="avatar">S</div>
+        <h3>Sara Conti</h3>
+        <div class="team-role">Color Specialist</div>
+        <p class="team-desc">Esperta in balayage e colorazioni su misura, formata presso accademie a Milano.</p>
+      </div>
+      <div class="team-card reveal">
+        <div class="avatar">L</div>
+        <h3>Luca Ferri</h3>
+        <div class="team-role">Stylist Junior</div>
+        <p class="team-desc">Tagli moderni e styling per uomo e bambino, attento ai dettagli e alle ultime tendenze.</p>
+      </div>
+    </div>
+  </div>
+</section>-->
+
+<!-- ============================================ GALLERIA ============================================ -->
+<section id="galleria" class="galleria">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow" style="justify-content:center;">Galleria</div>
+      <h2>Il nostro lavoro</h2>
+    </div>
+
+        <img src="img/taglio-photo1.jpg" style="border-radius: 20px;">
+        <div class="tile-label" style="text-align: center;">Piega Donna</div>
+      </div>
+
+  </div>
+</section>
+
+<div class="razor-divider" data-divider>
+  <svg viewBox="0 0 1160 26" preserveAspectRatio="none">
+    <path d="M0,13 L520,13" />
+    <circle cx="530" cy="13" r="4"/>
+    <path d="M542,13 L1160,13" />
+  </svg>
+</div>
+
+<!-- ============================================ PREVENTIVO ============================================ -->
+<section id="preventivo" class="preventivo">
+  <div class="preventivo-wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow" style="justify-content:center;">Preventivo</div>
+      <h2>Raccontaci cosa desideri</h2>
+      <p>Compila il modulo: apriremo WhatsApp con il messaggio già pronto da inviarci. Rispondiamo entro poche ore.</p>
+    </div>
+
+    <div class="form-card reveal">
+      <form id="preventivoForm" novalidate>
+        <div class="form-grid">
+          <div class="field" id="field-nome">
+            <label for="nome">Nome <span class="required">*</span></label>
+            <input type="text" id="nome" name="nome" placeholder="Il tuo nome" required autocomplete="name">
+            <span class="field-error">Inserisci il tuo nome.</span>
+          </div>
+          <div class="field" id="field-telefono">
+            <label for="telefono">Telefono <span class="required">*</span></label>
+            <input type="tel" id="telefono" name="telefono" placeholder="+39 333 123 4567" required autocomplete="tel">
+            <span class="field-error">Inserisci un numero di telefono valido.</span>
+          </div>
+        </div>
+
+        <div class="field" id="field-servizio">
+          <label for="servizio">Tipo di servizio <span class="required">*</span></label>
+          <select id="servizio" name="servizio" required>
+            <option value="">Seleziona...</option>
+            <option value="taglio_uomo" data-price="18">Taglio Uomo — €18</option>
+            <option value="taglio_barba" data-price="25">Taglio + Barba — €25</option>
+            <option value="barba" data-price="13">Solo Barba — €13</option>
+            <option value="taglio_donna" data-price="35">Taglio + Piega Donna — €35</option>
+            <option value="colore" data-price="45" data-from="1">Colore / Balayage — da €45</option>
+            <option value="bambini" data-price="15">Taglio Bambini — €15</option>
+          </select>
+          <span class="field-error">Seleziona un servizio.</span>
+        </div>
+
+        <div class="field">
+          <label for="descrizione">Descrizione (facoltativa)</label>
+          <textarea id="descrizione" name="descrizione" rows="4" placeholder="Es. Voglio un taglio moderno con sfumatura alta..."></textarea>
+        </div>
+
+        <div class="price-result" id="priceResult">
+          <p class="label">Preventivo stimato</p>
+          <span class="amount" id="estimatedPrice"></span>
+        </div>
+
+        <button type="submit" class="submit-btn" id="submitBtn">
+          Invia Richiesta su WhatsApp
+        </button>
+        <p class="form-privacy">Il messaggio verrà aperto in WhatsApp: potrai rileggerlo prima di inviarlo.</p>
+      </form>
+
+      <div class="success-panel" id="successPanel">
+        <div class="success-check">✓</div>
+        <h3>Richiesta pronta su WhatsApp</h3>
+        <p>Abbiamo aperto WhatsApp con il tuo messaggio. Invialo per confermare — ti risponderemo entro poche ore.</p>
+        <button type="button" class="btn btn-outline" id="newRequestBtn">Nuova richiesta</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ CONTATTI ============================================ -->
+<section id="contatti" class="contatti">
+  <div class="contatti-grid">
+    <div class="contatti-info reveal">
+      <div class="eyebrow">Contatti</div>
+      <h2>Vieni a trovarci</h2>
+      <p>Siamo nel cuore di Bergamo. Passa in negozio o scrivici — siamo sempre felici di rispondere.</p>
+
+      <div class="info-row">
+        <div class="info-icon">📍</div>
+        <div><h4>Indirizzo</h4><p>Via F. Corridoni, 14, 24124 Bergamo BG, Italy</p></div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon">☎</div>
+        <div><h4>Telefono / WhatsApp</h4><a href="tel:+393920522626">+39 392 052 2626</a></div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon">⏰</div>
+        <div><h4>Orari</h4><p>Martedi–Sabato · <span style="color: white;">8:30–19:30</span><br>Domenica · <span style="color: white;">8:30–18:00</span><br>Lunedi · <span style="color: red;">chiuso</span></p></div>
+      </div>
+
+      <div class="social-row">
+        <a href="https://wa.me/393920522626" target="_blank" rel="noopener" class="social-btn" aria-label="WhatsApp">🟢</a>
+        <a href="https://instagram.com/webtech_bg" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram">📷</a>
+        <a href="tel:+393920522626" class="social-btn" aria-label="Chiama">☎</a>
+      </div>
+    </div>
+
+    <div class="map-wrap reveal">
+  <iframe 
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1265.057!2d9.6883536!3d45.7064332!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478150df48762b13%3A0x1d2bd07ce87405a9!2sTaglio%20Perfetto%20Parrucchiere!5e0!3m2!1sit!2sit!4v1720000000000" 
+    width="100%" 
+    height="450" 
+    style="border:0;" 
+    allowfullscreen="" 
+    loading="lazy" 
+    referrerpolicy="no-referrer-when-downgrade"
+    title="Mappa — Taglio Perfetto Parrucchiere">
+  </iframe>
+</div>
+  </div>
+</section>
+
+<!-- ============================================ FOOTER ============================================ -->
+<footer class="footer">
+  <a href="#" class="logo">TAGLIO PERFETTO<span>Bergamo · Dal 2018</span></a>
+  <ul class="footer-links">
+    <li><a href="#servizi">Servizi</a></li>
+    <li><a href="#team">Maestri</a></li>
+    <li><a href="#galleria">Galleria</a></li>
+    <li><a href="#preventivo">Preventivo</a></li>
+    <li><a href="#contatti">Contatti</a></li>
+  </ul>
+  <p class="footer-credit">© <span id="year"></span> Taglio Perfetto — Parrucchiere Bergamo. Tutti i diritti riservati.</p>
+</footer>
+
+<!-- ============================================ FLOATING ACTIONS ============================================ -->
+<div class="floating-actions">
+  <button class="fab fab-top" id="fabTop" aria-label="Torna su">↑</button>
+  <a href="https://wa.me/393920522626" target="_blank" rel="noopener" class="fab" aria-label="Scrivici su WhatsApp">💬</a>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- Header scroll state ---------- */
+  const header = document.getElementById('siteHeader');
+  const fabTop = document.getElementById('fabTop');
+  window.addEventListener('scroll', function(){
+    const y = window.scrollY;
+    header.classList.toggle('scrolled', y > 40);
+    fabTop.classList.toggle('show', y > 500);
+  }, { passive:true });
+
+  fabTop.addEventListener('click', function(){
+    window.scrollTo({ top:0, behavior:'smooth' });
+  });
+
+  /* ---------- Mobile nav ---------- */
+  const burger = document.getElementById('burger');
+  const mobileNav = document.getElementById('mobileNav');
+  burger.addEventListener('click', function(){
+    const open = mobileNav.classList.toggle('open');
+    burger.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  mobileNav.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      mobileNav.classList.remove('open');
+      burger.classList.remove('open');
+      burger.setAttribute('aria-expanded','false');
+      document.body.style.overflow = '';
+    });
+  });
+
+  /* ---------- Scroll reveal ---------- */
+  const revealEls = document.querySelectorAll('.reveal');
+  const dividerEls = document.querySelectorAll('[data-divider]');
+  const io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (entry.isIntersecting){
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold:0.15 });
+  revealEls.forEach(function(el){ io.observe(el); });
+  dividerEls.forEach(function(el){ io.observe(el); });
+
+  // stagger index for gallery
+  document.querySelectorAll('.reveal-stagger').forEach(function(group){
+    Array.from(group.children).forEach(function(child, i){
+      child.style.setProperty('--i', i);
+    });
+  });
+
+  /* ---------- Preventivo form ---------- */
+  const WHATSAPP_NUMBER = '393920522626';
+
+  const form = document.getElementById('preventivoForm');
+  const successPanel = document.getElementById('successPanel');
+  const newRequestBtn = document.getElementById('newRequestBtn');
+  const priceResult = document.getElementById('priceResult');
+  const estimatedPrice = document.getElementById('estimatedPrice');
+  const servizioSelect = document.getElementById('servizio');
+
+  function showFieldError(fieldId, isValid){
+    const wrap = document.getElementById(fieldId);
+    if (!wrap) return;
+    wrap.classList.toggle('invalid', !isValid);
+  }
+
+  servizioSelect.addEventListener('change', function(){
+    const opt = this.options[this.selectedIndex];
+    const price = opt && opt.dataset.price;
+    if (price){
+      const fromLabel = opt.dataset.from ? 'a partire da ' : '';
+      estimatedPrice.textContent = fromLabel + '€' + price;
+      priceResult.classList.add('show');
+      requestAnimationFrame(function(){ priceResult.classList.add('visible'); });
+    } else {
+      priceResult.classList.remove('visible');
+      setTimeout(function(){ priceResult.classList.remove('show'); }, 300);
+    }
+    showFieldError('field-servizio', !!this.value);
+  });
+
+  function isValidPhone(value){
+    const digits = value.replace(/[^\d+]/g, '');
+    return digits.replace(/\D/g,'').length >= 8;
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+
+    const nome = document.getElementById('nome').value.trim();
+    const telefono = document.getElementById('telefono').value.trim();
+    const servizioEl = document.getElementById('servizio');
+    const servizioLabel = servizioEl.options[servizioEl.selectedIndex] ? servizioEl.options[servizioEl.selectedIndex].text : '';
+    const descrizione = document.getElementById('descrizione').value.trim();
+
+    let valid = true;
+    if (!nome){ showFieldError('field-nome', false); valid = false; } else { showFieldError('field-nome', true); }
+    if (!telefono || !isValidPhone(telefono)){ showFieldError('field-telefono', false); valid = false; } else { showFieldError('field-telefono', true); }
+    if (!servizioEl.value){ showFieldError('field-servizio', false); valid = false; } else { showFieldError('field-servizio', true); }
+
+    if (!valid){
+      const firstInvalid = form.querySelector('.invalid');
+      if (firstInvalid) firstInvalid.scrollIntoView({ behavior:'smooth', block:'center' });
+      return;
+    }
+
+    let message = 'Ciao! Vorrei richiedere un preventivo da Taglio Perfetto.\n\n';
+    message += 'Nome: ' + nome + '\n';
+    message += 'Telefono: ' + telefono + '\n';
+    message += 'Servizio: ' + servizioLabel + '\n';
+    if (descrizione) message += 'Descrizione: ' + descrizione + '\n';
+    message += '\nGrazie!';
+
+    const whatsappUrl = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(message);
+    window.open(whatsappUrl, '_blank', 'noopener');
+
+    form.style.display = 'none';
+    successPanel.classList.add('show');
+  });
+
+  newRequestBtn.addEventListener('click', function(){
+    form.reset();
+    priceResult.classList.remove('visible','show');
+    ['field-nome','field-telefono','field-servizio'].forEach(function(id){ showFieldError(id, true); });
+    successPanel.classList.remove('show');
+    form.style.display = '';
+  });
+
+  /* ---------- Footer year ---------- */
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+})();
+</script>
+</body>
+</html>
