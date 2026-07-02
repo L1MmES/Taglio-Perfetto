@@ -829,19 +829,43 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
           </div>
         </div>
 
-        <div class="field" id="field-servizio">
-          <label for="servizio">Tipo di servizio <span class="required">*</span></label>
-          <select id="servizio" name="servizio" required>
-            <option value="">Seleziona...</option>
-            <option value="taglio_uomo" data-price="18">Taglio Uomo — €13</option>
-            <option value="taglio_barba" data-price="25">Taglio + Barba — €25</option>
-            <option value="barba" data-price="13">Solo Barba — €13</option>
-            <option value="taglio_donna" data-price="35">Taglio + Piega Donna — €35</option>
-            <option value="colore" data-price="45" data-from="1">Colore / Balayage — da €45</option>
-            <option value="bambini" data-price="15">Taglio Bambini — €15</option>
-          </select>
-          <span class="field-error">Seleziona un servizio.</span>
-        </div>
+      <!-- Контейнер поля выбора услуги с ID для JS-валидации -->
+<div class="field" id="field-servizio">
+  <!-- Лейбл поля с маркером обязательности заполнения -->
+  <label for="servizio">Tipo di servizio <span class="required">*</span></label>
+  
+  <!-- Выпадающий список с реальными ценами и флагами для сложных окрашиваний -->
+  <select id="servizio" name="servizio" required>
+    <!-- Дефолтная пустая опция, заставляющая пользователя сделать выбор -->
+    <option value="">Seleziona...</option>
+    
+    <!-- Секция: Стрижки и Укладки -->
+    <option value="taglio_uomo" data-price="13" data-from="1">Taglio Uomo — da €13</option> <!-- Позиция 1 с фото. Поставил data-from, так как там "partire da" -->
+    <option value="taglio_shampoo" data-price="13" data-from="1">Taglio Uomo + Shampoo — da €13</option> <!-- Позиция 2 с фото -->
+    <option value="piega_liscia" data-price="13" data-from="1">Piega Liscia (corti) — da €13</option> <!-- Позиция 3 с фото -->
+    <option value="piega_mossa" data-price="15" data-from="1">Piega Mossa (corti) — da €15</option> <!-- Позиция 4 с фото -->
+    <option value="taglio_piega_liscia" data-price="18" data-from="1">Taglio + Piega Liscia — da €18-25</option> <!-- Позиция 5 с фото. Базовая цена для калькулятора €18 -->
+    
+    <!-- Секция: Окрашивание и Сложные процедуры (Высокий чек) -->
+    <option value="colore_piega" data-price="35" data-from="1">Colore + Piega Liscia — da €35</option> <!-- Позиция 6 с фото -->
+    <option value="colore_no_ammoniaca" data-price="40" data-from="1">Colore Senza Ammoniaca — da €40</option> <!-- Позиция 7 с фото -->
+    <option value="colpi_sole" data-price="45" data-from="1">Colpi di Sole (meches) — da €45</option> <!-- Позиция 8 с фото -->
+    <option value="shatush_balayage" data-price="70" data-from="1">Shatush / Balayage — da €70</option> <!-- Позиция 9 с фото -->
+    <option value="permanente" data-price="50" data-from="1">Permanente (corti) — da €50</option> <!-- Позиция 10 с фото -->
+    <option value="stiratura" data-price="90" data-from="1">Stiratura Lisciante — da €90</option> <!-- Позиция 11 с фото -->
+    
+    <!-- Секция: Эстетика и Уход (Допы) -->
+    <option value="trattamento_cheratina" data-price="12" data-from="1">Trattamento Cheratina — da €12</option> <!-- Позиция 12 с фото -->
+    <option value="sopracciglia" data-price="5">Sopracciglia — €5</option> <!-- Фиксированная цена €5 -->
+    <option value="baffetti" data-price="5">Baffetti — €5</option> <!-- Фиксированная цена €5 -->
+    <option value="extesion" data-price="5">Extesion — €5</option> <!-- Сохранена орфография салона с фото -->
+    <option value="shampoo_specifico" data-price="3">Shampoo Specifico — €3</option> <!-- Позиция 16 с фото -->
+    <option value="maschera_specifica" data-price="3">Maschera Specifica — €3</option> <!-- Позиция 17 с фото -->
+  </select>
+  
+  <!-- Текст ошибки, который JS включает (display: block) при попытке отправить пустую форму -->
+  <span class="field-error">Seleziona un servizio.</span>
+</div>
 
         <div class="field">
           <label for="descrizione">Descrizione (facoltativa)</label>
