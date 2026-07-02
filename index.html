@@ -629,67 +629,118 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 -->
 
 <!-- ============================================ SERVIZI / LISTINO ============================================ -->
-<section id="servizi" class="servizi">
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="eyebrow" style="justify-content:center;">Listino prezzi</div>
-      <h2>Trasparenza in ogni taglio</h2>
-      <p>Prezzi chiari, nessuna sorpresa. Ogni servizio include consulenza, lavaggio e styling finale.</p>
-    </div>
+<section id="servizi" class="servizi"> <!-- Основная секция прайс-листа -->
+  <div class="container"> <!-- Центрирующий контейнер для контента -->
+    <div class="section-head reveal"> <!-- Шапка секции с анимацией появления -->
+      <div class="eyebrow" style="justify-content:center;">Listino prezzi</div> <!-- Маленький премиальный заголовок сверху -->
+      <h2>Trasparenza in ogni taglio</h2> <!-- Главный заголовок блока -->
+      <p>Prezzi chiari, nessuna sorpresa. I prezzi variano in base alla lunghezza e quantità dei capelli.</p> <!-- Текст с их реальным дисклеймером с фото -->
+    </div> <!-- Закрываем шапку секции -->
 
-    <div class="price-grid">
-      <div class="price-card reveal">
-        <h3>Uomo</h3>
-        <p class="card-sub">Taglio classico e moderno</p>
-        <div class="price-row">
-          <span class="name">Taglio capelli<span class="note">Forbice e macchinetta</span></span>
-          <span class="amount">€18</span>
-        </div>
-        <div class="price-row">
-          <span class="name">Taglio + Barba<span class="note">Rasatura a rasoio</span></span>
-          <span class="amount">€25</span>
-        </div>
-        <div class="price-row">
-          <span class="name">Solo barba<span class="note">Contorno e definizione</span></span>
-          <span class="amount">€13</span>
-        </div>
-      </div>
+    <div class="price-grid"> <!-- Сетка для карточек с ценами -->
+      
+      <!-- КАРТОЧКА 1: СТРИЖКИ И УКЛАДКИ -->
+      <div class="price-card reveal"> <!-- Блок первой карточки -->
+        <h3>Taglio e Piega</h3> <!-- Заголовок: Стрижки и укладки -->
+        <p class="card-sub">Servizi di base per uomo e donna</p> <!-- Подзаголовок карточки -->
+        
+        <div class="price-row"> <!-- Строка услуги №1 -->
+          <span class="name">Taglio Uomo</span> <!-- Название услуги по фото -->
+          <span class="amount">da €13</span> <!-- Реальная цена с фото -->
+        </div> <!-- Закрываем строку -->
+        
+        <div class="price-row"> <!-- Строка услуги №2 -->
+          <span class="name">Taglio Uomo + Shampoo</span> <!-- Позиция №2 с фото -->
+          <span class="amount">da €13</span> <!-- Реальная цена -->
+        </div> <!-- Закрываем строку -->
+        
+        <div class="price-row"> <!-- Строка услуги №3 -->
+          <span class="name">Piega Liscia (corti)</span> <!-- Позиция №3 с фото -->
+          <span class="amount">da €13</span> <!-- Реальная цена -->
+        </div> <!-- Закрываем строку -->
+        
+        <div class="price-row"> <!-- Строка услуги №4 -->
+          <span class="name">Piega Mossa (corti)</span> <!-- Позиция №4 с фото -->
+          <span class="amount">da €15</span> <!-- Реальная цена -->
+        </div> <!-- Закрываем строку -->
 
-      <div class="price-card reveal">
-        <h3>Donna</h3>
-        <p class="card-sub">Taglio, piega e colore</p>
-        <div class="price-row">
-          <span class="name">Taglio + Piega<span class="note">Consulenza inclusa</span></span>
-          <span class="amount">€35</span>
-        </div>
-        <div class="price-row">
-          <span class="name">Colore / Balayage<span class="note">In base a lunghezza</span></span>
-          <span class="amount">da €45</span>
-        </div>
-        <div class="price-row">
-          <span class="name">Solo piega<span class="note">Styling completo</span></span>
-          <span class="amount">€22</span>
-        </div>
-      </div>
+        <div class="price-row"> <!-- Строка услуги №5 -->
+          <span class="name">Taglio + Piega Liscia</span> <!-- Позиция №5 с фото -->
+          <span class="amount">da €18-25</span> <!-- Реальный диапазон цен с фото -->
+        </div> <!-- Закрываем строку -->
+      </div> <!-- Закрываем первую карточку -->
 
-      <div class="price-card reveal">
-        <h3>Bambini</h3>
-        <p class="card-sub">Fino a 12 anni</p>
-        <div class="price-row">
-          <span class="name">Taglio bambino<span class="note">Ambiente su misura</span></span>
-          <span class="amount">€15</span>
-        </div>
-        <div class="price-row">
-          <span class="name">Primo taglio<span class="note">Ricordo incluso</span></span>
-          <span class="amount">€15</span>
-        </div>
-      </div>
-    </div>
+      <!-- КАРТОЧКА 2: ОКРАШИВАНИЕ И УХОД (САМЫЙ ДОРОГОЙ ЧЕК) -->
+      <div class="price-card reveal"> <!-- Блок второй карточки -->
+        <h3>Colore e Trattamenti</h3> <!-- Заголовок: Окрашивание и процедуры -->
+        <p class="card-sub">Servizi professionali per i tuoi capelli</p> <!-- Подзаголовок карточки -->
+        
+        <div class="price-row"> <!-- Строка услуги №1 -->
+          <span class="name">Colore + Piega Liscia</span> <!-- Позиция №6 с фото -->
+          <span class="amount">da €35</span> <!-- Реальная цена -->
+        </div> <!-- Закрываем строку -->
+        
+        <div class="price-row"> <!-- Строка услуги №2 -->
+          <span class="name">Colore Senza Ammoniaca</span> <!-- Позиция №7 с фото -->
+          <span class="amount">da €40</span> <!-- Реальная цена -->
+        </div> <!-- Закрываем строку -->
+        
+        <div class="price-row"> <!-- Строка услуги №3 -->
+          <span class="name">Colpi di Sole (meches)</span> <!-- Позиция №8 с фото -->
+          <span class="amount">da €45</span> <!-- Реальная цена -->
+        </div> <!-- Закрываем строку -->
+        
+        <div class="price-row"> <!-- Строка услуги №4 -->
+          <span class="name">Shatush / Balayage</span> <!-- Топовая позиция №9 с фото -->
+          <span class="amount">da €70</span> <!-- Премиум цена -->
+        </div> <!-- Закрываем строку -->
 
-    <div class="servizi-cta reveal">
-      <a href="#preventivo" class="btn btn-gold">Richiedi Preventivo Personalizzato</a>     
-    </div>
-  </div>
+        <div class="price-row"> <!-- Строка услуги №5 -->
+          <span class="name">Stiratura Lisciante</span> <!-- Позиция №11 с фото -->
+          <span class="amount">da €90</span> <!-- Самый высокий чек в прайсе -->
+        </div> <!-- Закрываем строку -->
+      </div> <!-- Закрываем вторую карточку -->
+
+      <!-- КАРТОЧКА 3: ЭСТЕТИКА И ДОПЫ -->
+      <div class="price-card reveal"> <!-- Блок третьей карточки -->
+        <h3>Estetica e Cura</h3> <!-- Заголовок: Эстетика и уход -->
+        <p class="card-sub">Dettagli che fanno la differenza</p> <!-- Подзаголовок карточки -->
+        
+        <div class="price-row"> <!-- Строка услуги №1 -->
+          <span class="name">Trattamento Cheratina</span> <!-- Позиция №12 с фото -->
+          <span class="amount">da €12</span> <!-- Реальная цена -->
+        </div> <!-- Закрываем строку -->
+        
+        <div class="price-row"> <!-- Строка услуги №2 -->
+          <span class="name">Sopracciglia</span> <!-- Позиция №13 с фото -->
+          <span class="amount">€5</span> <!-- Четкая цена без "da" -->
+        </div> <!-- Закрываем строку -->
+        
+        <div class="price-row"> <!-- Строка услуги №3 -->
+          <span class="name">Baffetti</span> <!-- Позиция №14 с фото -->
+          <span class="amount">€5</span> <!-- Цена с фото -->
+        </div> <!-- Закрываем строку -->
+        
+        <div class="price-row"> <!-- Строка услуги №4 -->
+          <span class="name">Extesion</span> <!-- Позиция №15 с фото (сохранил их орфографию для аутентичности) -->
+          <span class="amount">€5</span> <!-- Цена с фото -->
+        </div> <!-- Закрываем строку -->
+
+        <div class="price-row"> <!-- Строка услуги №5 -->
+          <span class="name">Shampoo / Maschera Specifica</span> <!-- Объединил две последние позиции по €3 для экономии места -->
+          <span class="amount">€3</span> <!-- Цена за позицию -->
+        </div> <!-- Закрываем строку -->
+      </div> <!-- Закрываем третью карточку -->
+
+    </div> <!-- Закрываем сетку price-grid -->
+
+    <div class="servizi-cta reveal"> <!-- Нижний блок с кнопкой призыва к действию -->
+      <a href="#preventivo" class="btn btn-gold">Richiedi Preventivo Personalizzato</a> <!-- Кнопка-ссылка на калькулятор -->
+      <p class="servizi-note">I prezzi variano in base alla lunghezza e quantità dei capelli.</p> <!-- Дублируем официальный дисклеймер -->
+    </div> <!-- Закрываем блок cta -->
+  </div> <!-- Закрываем контейнер -->
+</section> <!-- Закрываем секцию servizi -->
+
 </section>
 
 <div class="razor-divider" data-divider>
@@ -739,7 +790,6 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
       <div class="eyebrow" style="justify-content:center;">Galleria</div>
       <h2>Il nostro lavoro</h2>
     </div>
-
         <img src="img/taglio-photo1.jpg" style="border-radius: 20px;">
         <div class="tile-label" style="text-align: center;">Piega Donna</div>
       </div>
@@ -783,7 +833,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
           <label for="servizio">Tipo di servizio <span class="required">*</span></label>
           <select id="servizio" name="servizio" required>
             <option value="">Seleziona...</option>
-            <option value="taglio_uomo" data-price="18">Taglio Uomo — €18</option>
+            <option value="taglio_uomo" data-price="18">Taglio Uomo — €13</option>
             <option value="taglio_barba" data-price="25">Taglio + Barba — €25</option>
             <option value="barba" data-price="13">Solo Barba — €13</option>
             <option value="taglio_donna" data-price="35">Taglio + Piega Donna — €35</option>
@@ -867,12 +917,12 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
   <a href="#" class="logo">TAGLIO PERFETTO<span>Bergamo · Dal 2018</span></a>
   <ul class="footer-links">
     <li><a href="#servizi">Servizi</a></li>
-    <li><a href="#team">Maestri</a></li>
+    <!--<li><a href="#team">Maestri</a></li>-->
     <li><a href="#galleria">Galleria</a></li>
     <li><a href="#preventivo">Preventivo</a></li>
     <li><a href="#contatti">Contatti</a></li>
   </ul>
-  <p class="footer-credit">© <span id="year"></span> Taglio Perfetto — Parrucchiere Bergamo. Tutti i diritti riservati.</p>
+  <p class="footer-credit">© <span id="year"></span> Taglio Perfetto — Parrucchiere Bergamo. Tutti i diritti riservati. <br> Il sito creato da <a href="https://www.instagram.com/webtech_bg/" target="_blank">webtech_bg</a></p>
 </footer>
 
 <!-- ============================================ FLOATING ACTIONS ============================================ -->
